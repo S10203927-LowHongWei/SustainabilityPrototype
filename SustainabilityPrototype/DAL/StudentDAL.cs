@@ -66,4 +66,6 @@ namespace SustainabilityPrototype.DAL
 
             return studentList;
         }
+    }
 }
+
