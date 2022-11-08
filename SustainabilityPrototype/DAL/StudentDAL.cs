@@ -24,7 +24,7 @@ namespace SustainabilityPrototype.DAL
 
             Configuration = builder.Build();
             string strConn = Configuration.GetConnectionString(
-            "ZZFashionConnectionString");
+            "NPBookConnectionString");
 
             //Instantiate a SqlConnection object with the 
             //Connection String read. 
