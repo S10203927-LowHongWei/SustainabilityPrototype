@@ -19,12 +19,11 @@ namespace SustainabilityPrototype.DAL
         {
             //Read ConnectionString from appsettings.json file
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
-
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json");
             Configuration = builder.Build();
             string strConn = Configuration.GetConnectionString(
-            "NPBookConnectionString");
+            "SustainabilityPFD");
 
             //Instantiate a SqlConnection object with the 
             //Connection String read. 
@@ -51,7 +50,7 @@ namespace SustainabilityPrototype.DAL
                     {
                         StudentId = reader.GetString(0),
                         StudentName = reader.GetString(1),
-                        Gender = reader.GetString(2)[0],
+                        Gender = reader.GetString(2),
                         DOB = reader.GetDateTime(3),
                         StudentPassword = reader.GetString(4),
                         StudentEmailAddr = !reader.IsDBNull(5) ?               // if not null
@@ -66,6 +65,28 @@ namespace SustainabilityPrototype.DAL
 
             return studentList;
         }
+
+        public Student GetStudent(string studentId, string password)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Student WHERE StudentID = @studentId AND Password = @password";
+            cmd.Parameters.AddWithValue("@studentId", studentId);
+            cmd.Parameters.AddWithValue("@password", password);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            Student student = new Student();
+            Console.WriteLine(student);
+            if (reader.Read())
+            {
+                student.StudentId = reader.GetString(0);
+                student.StudentName = reader.GetString(1);
+                student.Gender = reader.GetString(2);
+                student.DOB = reader.GetDateTime(3);
+                student.StudentPassword = reader.GetString(4);
+            }
+            reader.Close();
+            conn.Close();
+            return student;
+        }
     }
 }
-

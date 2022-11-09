@@ -19,7 +19,7 @@ namespace SustainabilityPrototype.Models
 
         //Gender
         [Display(Name = "Gender")]
-        public char Gender { get; set; }
+        public string Gender { get; set; }
 
         //Date of birth
         [Display(Name = "Date of Birth")]
