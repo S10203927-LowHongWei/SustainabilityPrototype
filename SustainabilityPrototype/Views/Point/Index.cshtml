@@ -6,7 +6,17 @@
 <html>
 <body>
     <img src="~/images/Ngee_Ann_Polytechnic_logo.svg.png" style="align-content:center"/>
-    <h1>Yo</h1>
+    <div class="information-box">
+        <div class="information-box-info">
+            <h1>Name : @ViewData["Name"]</h1>
+            <h1>Email : @ViewData["Email"]</h1>
+            <h1>DOB : @ViewData["DOB"]</h1>
+        </div>
+    </div>
+    <div class="pointsContainer">
+        <img src="~/images/pointsbanner.jpg"/>
+        <div class="points"><h1>You have @ViewData["Points"] points</h1></div>
+    </div>
 </body>
 </html>
 

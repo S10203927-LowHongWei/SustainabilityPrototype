@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SustainabilityPrototype.DAL;
 using Microsoft.AspNetCore.Http;
+using Nancy.Json;
 
 namespace SustainabilityPrototype.Controllers
 {
@@ -32,7 +33,6 @@ namespace SustainabilityPrototype.Controllers
         }
         public ActionResult Login()
         {
-            Console.WriteLine("fds");
             return View();
         }
         [HttpPost]
@@ -42,9 +42,12 @@ namespace SustainabilityPrototype.Controllers
             string username = formData["username"].ToString();
             string password = formData["password"].ToString();
             Student s = studentContext.GetStudent(username,password);
-            if(s.StudentId == username)
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string jsonObj = jss.Serialize(s);
+            HttpContext.Session.SetString("Student", jsonObj);
+            if (s.StudentId == username)
             {
-                return RedirectToAction("Register");
+                return RedirectToAction("Index","Point");
             }
             else
             {

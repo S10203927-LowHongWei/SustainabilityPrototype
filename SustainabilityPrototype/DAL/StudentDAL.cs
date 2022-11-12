@@ -75,7 +75,6 @@ namespace SustainabilityPrototype.DAL
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             Student student = new Student();
-            Console.WriteLine(student);
             if (reader.Read())
             {
                 student.StudentId = reader.GetString(0);
@@ -83,6 +82,7 @@ namespace SustainabilityPrototype.DAL
                 student.Gender = reader.GetString(2);
                 student.DOB = reader.GetDateTime(3);
                 student.StudentPassword = reader.GetString(4);
+                student.StudentEmailAddr = reader.GetString(5);
             }
             reader.Close();
             conn.Close();
