@@ -35,7 +35,7 @@ namespace SustainabilityPrototype.DAL
             //Create a SqlCommand object from connection object
             SqlCommand cmd = conn.CreateCommand();
             //Specify the SELECT SQL statement 
-            cmd.CommandText = @"SELECT * FROM Student ORDER BY StudentID";
+            cmd.CommandText = @"SELECT * FROM Food ORDER BY FoodID";
             //Open a database connection
             conn.Open();
             //Execute the SELECT SQL through a DataReader
