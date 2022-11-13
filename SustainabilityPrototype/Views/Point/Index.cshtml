@@ -1,22 +1,32 @@
-﻿
+﻿@model SustainabilityPrototype.Models.Student
+
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
 <!DOCTYPE HTML>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+</head>
 <html>
 <body>
-    <img src="~/images/Ngee_Ann_Polytechnic_logo.svg.png" style="align-content:center"/>
+    <img src="~/images/Ngee_Ann_Polytechnic_logo.svg.png" style="width:100%" />
     <div class="information-box">
         <div class="information-box-info">
-            <h1>Name : @ViewData["Name"]</h1>
-            <h1>Email : @ViewData["Email"]</h1>
-            <h1>DOB : @ViewData["DOB"]</h1>
+            <p>Name : @ViewData["Name"]</p>
+            <p>Email : @ViewData["Email"]</p>
+            <p>DOB : @ViewData["DOB"].ToString()</p>
         </div>
     </div>
     <div class="pointsContainer">
-        <img src="~/images/pointsbanner.jpg"/>
+        <img src="~/images/pointsbanner.jpg" style="width:100%" />
         <div class="points"><h1>You have @ViewData["Points"] points</h1></div>
+    </div>
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        <a asp-action="Index">Back to List</a>
     </div>
 </body>
 </html>
-
