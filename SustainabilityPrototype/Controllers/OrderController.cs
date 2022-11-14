@@ -89,5 +89,10 @@ namespace SustainabilityPrototype.Controllers
         {
             return View();
         }
+
+        public ActionResult OrderSummary()
+        {
+            return View();
+        }
     }
 }
