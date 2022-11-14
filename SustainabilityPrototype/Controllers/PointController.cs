@@ -2,13 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Nancy.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using SustainabilityPrototype.Models;
+using QRCoder;
+using System.Drawing;
 
-namespace SustainabilityPrototype.Controllers
-{
     public class PointController : Controller
     {
         public IActionResult Index()
@@ -18,8 +16,17 @@ namespace SustainabilityPrototype.Controllers
             Student s = jss.Deserialize<Student>(studentObj);
             ViewData["Name"] = s.StudentName;
             ViewData["Email"] = s.StudentEmailAddr;
-            ViewData["DOB"] = s.DOB;
+            ViewData["DOB"] = Convert.ToDateTime(s.DOB).ToShortDateString();
+            return View();
+        }
+        public IActionResult Redeem()
+        {
+            QRCodeGenerator qrGen = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGen.CreateQrCode("S10203927",QRCodeGenerator.ECCLevel.Q);
+            QRCode qrcode = new QRCode(qrCodeData);
+            Bitmap qrImg = qrcode.GetGraphic(20);
+            Console.WriteLine(qrImg.ToString());
+            ViewData["QR"] = qrImg;
             return View();
         }
     }
-}

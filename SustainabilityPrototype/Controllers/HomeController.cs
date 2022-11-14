@@ -41,13 +41,20 @@ namespace SustainabilityPrototype.Controllers
             
             string username = formData["username"].ToString();
             string password = formData["password"].ToString();
-            Student s = studentContext.GetStudent(username,password);
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            string jsonObj = jss.Serialize(s);
-            HttpContext.Session.SetString("Student", jsonObj);
-            if (s.StudentId == username)
+            if(username[0].ToString().ToLower() == "s")
             {
-                return RedirectToAction("Index","Point");
+                Student s = studentContext.GetStudent(username, password);
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                string jsonObj = jss.Serialize(s);
+                HttpContext.Session.SetString("Student", jsonObj);
+                if (s.StudentId == username)
+                {
+                    return RedirectToAction("Index", "Point");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             else
             {

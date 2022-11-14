@@ -1,7 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Redemption";
+﻿
+@{
+    ViewData["Title"] = "Redeem";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
 }
-
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,7 @@
 </head>
 
 <body>
+    <img src="@ViewData["QR"]" />
     <div class="showcash">
         <img src="~/images/pngtree-golden-pig-money-gold-piggy-bank-png-image_549338.jpg">
         <div class="cash">
@@ -42,3 +44,4 @@
 
 </body>
 </html>
+
