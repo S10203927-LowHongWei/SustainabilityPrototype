@@ -83,5 +83,11 @@ namespace SustainabilityPrototype.Controllers
                 return View();
             }
         }
+
+       //GET: VendorController/QrCodeChoice/
+       public ActionResult QrCodeChoice()
+        {
+            return View();
+        }
     }
 }
