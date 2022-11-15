@@ -86,6 +86,22 @@ namespace SustainabilityPrototype.Controllers
         {
             return View();
         }
+        public ActionResult Registered()
+        {
+            Student student = new Student();
+            return View(student);
+        }
+
+
+        // POST: Register
+        [HttpPost]
+        public ActionResult Registered(Student student)
+        {
+            //Add staff record to database
+            studentContext.Register(student);
+            //Redirect user to Customer/Index view
+            return RedirectToAction("Login");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

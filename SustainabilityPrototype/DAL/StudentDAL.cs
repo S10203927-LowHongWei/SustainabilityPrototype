@@ -90,5 +90,33 @@ namespace SustainabilityPrototype.DAL
             conn.Close();
             return student;
         }
+
+        public void Register(Student student)
+        {
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify an INSERT SQL statement which will
+            //return the auto-generated StaffID after insertion
+            cmd.CommandText = @"INSERT INTO Student (Username, Name, Gender, DOB, Password, Email)
+                                VALUES(@username, @name, @gender,
+                                @dob, @password, @email)";
+            //Define the parameters used in SQL statement, value for each parameter
+            //is retrieved from respective class's property.
+
+            cmd.Parameters.AddWithValue("@username", student.Username);
+            cmd.Parameters.AddWithValue("@name", student.StudentName);
+            cmd.Parameters.AddWithValue("@Gender", student.Gender);
+            cmd.Parameters.AddWithValue("@dob", student.DOB);
+            cmd.Parameters.AddWithValue("@password", student.StudentPassword);
+            cmd.Parameters.AddWithValue("@email", student.StudentEmailAddr);
+
+            //A connection to database must be opened before any operations made.
+            conn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Close();
+            //A connection should be closed after operations.
+            conn.Close();
+        }
     }
 }
