@@ -1,20 +1,46 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SustainabilityPrototype.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace SustainabilityPrototype.Controllers
 {
     public class OrderController : Controller
     {
+        //Order cart to store all the selected items
+        private List<string> amtRice = new List<string> {"100 grams", "200 grams"};
+
+
         // GET: OrderController
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Foodclub()
+        {
+            return View();
+        }
+
+        public ActionResult Indonesian()
+        {
+            return View();
+        }
+
+        public ActionResult NasiLemak()
+        {
+            ViewData["amtRice"] = amtRice;
+
+            Orderdetails orderdetails = new Orderdetails
+            {
+
+            };
+            return View();
+        }
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
