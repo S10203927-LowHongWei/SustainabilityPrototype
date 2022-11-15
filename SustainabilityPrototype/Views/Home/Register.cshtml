@@ -1,39 +1,37 @@
 ﻿<!DOCTYPE html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register form</title>
-    <link rel="stylesheet" href="~/css/register.css">
+    <title>Simple Login Form Example</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
+    <link rel="stylesheet" href="~/css/login.css">
 
 </head>
 <body>
-    <div class="form">
-        <div class="title">Register</div>
-        <div class="input-container ic1">
-            <input id="name" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="name" class="placeholder">Name</label>
-        </div>
-        <div class="input-container ic2">
-            <input id="password" class="input" type="password" placeholder=" " />
-            <div class="cut"></div>
-            <label for="password" class="placeholder">Password</label>
-        </div>
-        <div class="input-container ic2">
-            <input id="studentid" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="studentid" class="placeholder">Student Id</label>
-        </div>
-        <div class="input-container ic2">
-            <input id="datetime" class="input" type="datetime" placeholder=" " />
-            <div class="cut"></div>
-            <label for="datetime" class="placeholder">Date of birth</label>
-        </div>
-        <div class="input-container ic2">
-            <input id="email" class="input" type="text" placeholder=" " />
-            <div class="cut cut-short"></div>
-            <label for="email" class="placeholder">Email</>
-        </div>
-        <button type="text" class="submit">Register</button>
+    <div class="login-form">
+        <form asp-controller="Home" asp-action="Login" method="get">
+            <h1>Register</h1>
+            <div class="content">
+                <div class="input-field">
+                    <input type="text" placeholder="StudentID" autocomplete="nope" name="username">
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Name" autocomplete="new-password" name="password">
+                </div>
+                <div class="input-field">
+                    <input type="text" placeholder="Password" autocomplete="nope" name="username">
+                </div>
+                <div class="input-field">
+                    <input type="password" placeholder="Email" autocomplete="new-password" name="password">
+                </div>
+                <div class="input-field">
+                    <input type="date" name="DOB" placeholder="Date Of Birth">
+                </div>
+            </div>
+            <div class="action">
+                <button>Create</button>
+            </div>
+        </form>
     </div>
 </body>
+</html>

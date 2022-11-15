@@ -48,13 +48,14 @@ namespace SustainabilityPrototype.DAL
                 studentList.Add(
                     new Student
                     {
-                        StudentId = reader.GetString(0),
-                        StudentName = reader.GetString(1),
-                        Gender = reader.GetString(2),
-                        DOB = reader.GetDateTime(3),
-                        StudentPassword = reader.GetString(4),
-                        StudentEmailAddr = !reader.IsDBNull(5) ?               // if not null
-                                 reader.GetString(5) : (string)null
+                        StudentId = reader.GetInt32(0),
+                        Username = reader.GetString(1),
+                        StudentName = reader.GetString(2),
+                        Gender = reader.GetString(3),
+                        DOB = reader.GetDateTime(4),
+                        StudentPassword = reader.GetString(5),
+                        StudentEmailAddr = !reader.IsDBNull(6) ?               // if not null
+                                 reader.GetString(6) : (string)null
                     }
                 );
             }
@@ -66,23 +67,24 @@ namespace SustainabilityPrototype.DAL
             return studentList;
         }
 
-        public Student GetStudent(string studentId, string password)
+        public Student GetStudent(string username, string password)
         {
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT * FROM Student WHERE StudentID = @studentId AND Password = @password";
-            cmd.Parameters.AddWithValue("@studentId", studentId);
+            cmd.CommandText = @"SELECT * FROM Student WHERE Username = @username AND Password = @password";
+            cmd.Parameters.AddWithValue("@username", username);
             cmd.Parameters.AddWithValue("@password", password);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             Student student = new Student();
             if (reader.Read())
             {
-                student.StudentId = reader.GetString(0);
-                student.StudentName = reader.GetString(1);
-                student.Gender = reader.GetString(2);
-                student.DOB = reader.GetDateTime(3);
-                student.StudentPassword = reader.GetString(4);
-                student.StudentEmailAddr = reader.GetString(5);
+                student.StudentId = reader.GetInt32(0);
+                student.Username = reader.GetString(1);
+                student.StudentName = reader.GetString(2);
+                student.Gender = reader.GetString(3);
+                student.DOB = reader.GetDateTime(4);
+                student.StudentPassword = reader.GetString(5);
+                student.StudentEmailAddr = reader.GetString(6);
             }
             reader.Close();
             conn.Close();

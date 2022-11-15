@@ -9,8 +9,11 @@ namespace SustainabilityPrototype.Models
     public class Student
     {
         //Student ID
-        [Display(Name = "id")]
-        public string StudentId { get; set; }
+        [Display(Name = "StudentId")]
+        public int StudentId { get; set; }
+        [Display(Name = "Username")]
+        [Required(ErrorMessage = "Please enter name"), StringLength(50)]
+        public string Username { get; set; }
 
         //Student name
         [Display(Name = "Student name")]
