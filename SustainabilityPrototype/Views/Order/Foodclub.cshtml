@@ -1,23 +1,26 @@
 ﻿
 @{
     ViewData["Title"] = "Foodclub";
+    Layout = "_StudentLayout";
 }
 
 <section>
-    <h1 class="text-center" style="padding-top:50px">Food club</h1>
+    <div style="position:relative; text-align:center; color:black;">
+        <img src="~/images/Food Club Button.png" style=" width: 100%; margin-left: auto; margin-right: auto;" />
+        <div style="position: absolute; top: 50%; bottom: 50%; transform: translate(-50%, -50%); margin-left: auto; margin-right: auto; ">
+            <h1 style="text-align:center; ">Food Club</h1>
+        </div>
+    </div>
 </section>
-<section>
-    <h1 class="text-center" style="padding-top:50px">Canteens</h1>
-</section>
-<section class="container justify-content-center" style="padding-top:50px;">
+<section class="container justify-content-center" style="padding-top:30px;">
     <div class="row" style="padding-top:20px;">
-        <button type="button" onclick="location.href='@Url.Action(" CreateCustomerMember", "Order" )'" class="btn-dark" style="height: 150px; width: 90%; margin-left: auto; margin-right: auto;">Indonesian</button>
+        <button type="button" onclick="location.href='@Url.Action("Indonesian", "Order")'" class="btn btn-primary" style=" height: 150px; width: 90%; margin-left: auto; margin-right: auto;">Indonesian</button>
     </div>
     <div class="row" style="padding-top:20px;">
-        <button type="button" onclick="location.href='@Url.Action(" CreateCustomerMember", "SalesPersonal" )'" class="btn-dark" style="height: 150px; width: 90%; margin-left: auto; margin-right: auto;">Japanese</button>
+        <button type="button" onclick="location.href='@Url.Action("Indonesian", "Order" )'" class="btn btn-primary" style="height: 150px; width: 90%; margin-left: auto; margin-right: auto;">Japanese</button>
     </div>
     <div class="row" style="padding-top:20px;">
-        <button type="button" onclick="location.href='@Url.Action(" CreateCustomerMember", "SalesPersonal" )'" class="btn-dark" style="height: 150px; width: 90%; margin-left: auto; margin-right: auto;">Shanghainese</button>
+        <button type="button" onclick="location.href='@Url.Action("Indonesian", "Order" )'" class="btn btn-primary" style="height: 150px; width: 90%; margin-left: auto; margin-right: auto;">Shanghainese</button>
     </div>
 </section>
 
