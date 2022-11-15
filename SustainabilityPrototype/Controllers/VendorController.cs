@@ -90,10 +90,6 @@ namespace SustainabilityPrototype.Controllers
             return View();
         }
 
-        //GET: VendorController/QrCodeSuccess/
-        public ActionResult QRCodeSuccess()
-        {
-            return View();
-        }
+       
     }
 }
