@@ -85,11 +85,23 @@ namespace SustainabilityPrototype.Controllers
         }
 
        //GET: VendorController/QrCodeChoice/
-       public ActionResult QrCodeChoice()
+       public ActionResult QRCodeChoice()
         {
             return View();
         }
 
+        //GET VendorController/GivingVoucher
+
+        public ActionResult GivingVoucher()
+        {
+            return View();
+        }
+
+        //VendorController/QRCodeSuccess
+        public ActionResult QRCodeSuccess()
+        {
+            return View();
+        }
        
     }
 }
