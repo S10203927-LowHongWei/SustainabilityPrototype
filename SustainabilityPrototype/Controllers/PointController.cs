@@ -65,7 +65,7 @@ public class PointController : Controller
         else if (f == false)
         {
             QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode(s.StudentId.ToString(), QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode(s.Username.ToString(), QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             MemoryStream ms = new MemoryStream();
             using (Bitmap bitmap = qrCode.GetGraphic(10))
