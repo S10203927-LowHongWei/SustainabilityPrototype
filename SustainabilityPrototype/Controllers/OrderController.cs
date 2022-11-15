@@ -15,6 +15,16 @@ namespace SustainabilityPrototype.Controllers
             return View();
         }
 
+        public ActionResult Foodclub()
+        {
+            return View();
+        }
+
+        public ActionResult Indonesian()
+        {
+            return View();
+        }
+
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
