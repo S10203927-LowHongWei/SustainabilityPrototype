@@ -111,3 +111,12 @@ body {
     font-size:4rem;
 }
 
+.QRCodeContainer {
+    display: flex;
+    border-radius: 25px;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    width: 100%;
+    font-weight: bold;
+}

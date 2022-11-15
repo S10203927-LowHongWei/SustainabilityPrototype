@@ -16,7 +16,7 @@ namespace SustainabilityPrototype.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private StudentDAL studentContext = new StudentDAL();
-
+        private VendorDAL vendorContext = new VendorDAL();
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -41,25 +41,46 @@ namespace SustainabilityPrototype.Controllers
             
             string username = formData["username"].ToString();
             string password = formData["password"].ToString();
-            if(username[0].ToString().ToLower() == "s")
+            if(username.Length != 0)
             {
-                Student s = studentContext.GetStudent(username, password);
-                JavaScriptSerializer jss = new JavaScriptSerializer();
-                string jsonObj = jss.Serialize(s);
-                HttpContext.Session.SetString("Student", jsonObj);
-                if (s.StudentId == username)
+                if (username[0].ToString().ToLower() == "s")
                 {
-                    return RedirectToAction("Index", "Point");
+                    Student s = studentContext.GetStudent(username, password);
+                    JavaScriptSerializer jss = new JavaScriptSerializer();
+                    string jsonObj = jss.Serialize(s);
+                    HttpContext.Session.SetString("User", jsonObj);
+                    if (s.Username == username)
+                    {
+                        return RedirectToAction("Index", "Point",new { User = "Student", Student = s});
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else if (username[0].ToString().ToLower() == "v")
+                {
+                    Vendor v = vendorContext.GetVendor(username, password);
+                    JavaScriptSerializer jss = new JavaScriptSerializer();
+                    string jsonObj = jss.Serialize(v);
+                    HttpContext.Session.SetString("User", jsonObj);
+                    if (v.Username == username)
+                    {
+                        return RedirectToAction("Index", "Point", new { User = "Vendor", Vendor = v }) ;
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    TempData["ErrorMsg"] = "Wrong Details Entered";
+                    return RedirectToAction("Login");
                 }
             }
-            else
-            {
-                return RedirectToAction("Index");
-            }
+            TempData["ErrorMsg"] = "Please Input Details";
+            return RedirectToAction("Login");
         }
         public ActionResult Register()
         {
