@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "QRCodeSuccess";
+}
+
+
+<style>
+    .modalButton:hover {
+        box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, inset 0 0 1.3rem #6E57E0;
+        transition: 0.7s;
+        animation: anim 1.5s infinite alternate;
+        border-style: none;
+    }
+
+</style>
+
+
+
+
+
+
+<div class="main" style="opacity:50%;">
+    <div style="width:100%; height:auto; background-color:dodgerblue; font-size:100px; font-weight:bold; border-radius: 25px;">FoodClub</div>
+    <img src="~/images/Ngee_Ann_Polytechnic_logo.svg.png" style="width:100%" />
+    <h1 style="text-align:center; font-weight:bold; font-size:100px; margin:100px 0px;">Welcome,<br />Indonesian</h1>
+    <div class="pointsContainer">
+
+        <img src="~/images/pointsbanner.jpg" style="width:100%" />
+        <div class="points"><h1>You have @ViewData["Points"] 2 million points</h1><h1>CLAIMABLE</h1></div>
+
+    </div>
+
+    <section style="display:flex; justify-content:center;">
+        <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; margin-top:100px; font-weight:bold; font-size:30px;">Scan QR code</button>
+    </section>
+    <section style="display:flex; justify-content:center;">
+        <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; margin-top:40px; font-weight:bold; font-size:30px;">Claim All Points</button>
+    </section>
+    <section style="display:flex; justify-content:center;">
+        <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; margin-top:40px; margin-bottom:50px; font-weight:bold; font-size:30px;">Current Orders</button>
+    </section>
+
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalToggle">
+    Launch modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="modalToggle" tabindex="-1" role="dialog" aria-labelledby="modalToggleCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+           
+            <div class="modal-body text-center" style="font-weight:bold; font-size:2rem; color:limegreen;">
+                QR Code successfully Scanned
+            </div>
+            <div class="modal-footer" style="display:flex; justify-content:center;">
+                <button class="modalButton" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:30%; height:4rem; margin:30px 0; font-weight:bold; font-size:20px;" data-dismiss="modal">Okay</button>
+            </div>
+        </div>
+    </div>
+</div>
