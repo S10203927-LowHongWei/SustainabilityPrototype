@@ -1,35 +1,50 @@
-﻿<!DOCTYPE html>
+﻿@model SustainabilityPrototype.Models.Student
+
+@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Simple Login Form Example</title>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
     <link rel="stylesheet" href="~/css/login.css">
-
 </head>
+
 <body>
     <div class="login-form">
-        <form asp-controller="Home" asp-action="Login" method="get">
+        <form asp-action="Registered">
             <h1>Register</h1>
             <div class="content">
                 <div class="input-field">
-                    <input type="text" placeholder="StudentID" autocomplete="nope" name="username">
+                    <input asp-for="Username" type="text" placeholder="StudentId" autocomplete="nope" name="username">
                 </div>
                 <div class="input-field">
-                    <input type="password" placeholder="Name" autocomplete="new-password" name="password">
+                    <input asp-for="StudentName" type="text" placeholder="Name" autocomplete="nope" name="studentname">
                 </div>
                 <div class="input-field">
-                    <input type="text" placeholder="Password" autocomplete="nope" name="username">
+                    <label class="col">
+                        <input asp-for="Gender" type="radio" value="M" name="gender"checked class="form-check-input" style="width:50%;" />
+                        <span style="font-weight:normal; ">Male</span>
+                    </label>
+                    <label class="col">
+                        <input asp-for="Gender" type="radio" value="F" name="gender" class="form-check-input" style="width:50%;" />
+                        <span style="font-weight:normal;">Female</span>
+                    </label>
                 </div>
                 <div class="input-field">
-                    <input type="password" placeholder="Email" autocomplete="new-password" name="password">
+                    <input asp-for="DOB" type="date" placeholder="Date of birth" autocomplete="nope" name="dob">
                 </div>
                 <div class="input-field">
-                    <input type="date" name="DOB" placeholder="Date Of Birth">
+                    <input asp-for="StudentPassword" type="password" name="studentpassword" placeholder="Password" autocomplete="new-password">
+                </div>
+                <div class="input-field">
+                    <input asp-for="StudentEmailAddr" type="text" name="studentemailaddr" placeholder="Email Address" autocomplete="nope">
                 </div>
             </div>
             <div class="action">
-                <button>Create</button>
+                <button>Register</button>
+
             </div>
         </form>
     </div>

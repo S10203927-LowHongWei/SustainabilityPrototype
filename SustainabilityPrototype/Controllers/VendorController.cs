@@ -1,14 +1,24 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using ZXing;
 
 namespace SustainabilityPrototype.Controllers
 {
     public class VendorController : Controller
     {
+        private IHostingEnvironment hostingEnvironment;
+
+        public VendorController(IHostingEnvironment hostingEnvironment)
+        {
+            this.hostingEnvironment = hostingEnvironment;
+        }
         // GET: VendorController
         public ActionResult Index()
         {
@@ -101,6 +111,67 @@ namespace SustainabilityPrototype.Controllers
         public ActionResult CurrentOrders()
         {
             return View();
+        }
+        //GET: VendorController/RedeemVoucher
+        public IActionResult RedeemVoucher()
+        {
+            return View();
+        }
+
+        //POST: VendorController/RedeemVoucher
+        [HttpPost]
+        public IActionResult RedeemVoucher(string name)
+        {
+            try
+            {
+                var files = HttpContext.Request.Form.Files;
+                if (files != null)
+                {
+                    foreach (var file in files)
+                    {
+                        if (file.Length > 0)
+                        {
+                            var fileName = file.FileName;
+                            var fileNameToStore = string.Concat(Convert.ToString(Guid.NewGuid()), Path.GetExtension(fileName));
+                            //  Path to store the snapshot in local folder
+                            var filepath = Path.Combine(hostingEnvironment.WebRootPath, "images", "QRCode.png");
+
+                            // Save image file in local folder
+                            if (!string.IsNullOrEmpty(filepath))
+                            {
+                                using (FileStream fileStream = System.IO.File.Create(filepath))
+                                {
+                                    file.CopyTo(fileStream);
+                                    fileStream.Flush();
+                                }
+                            }
+
+                        }
+                    }
+                    Bitmap image;
+                    try
+                    {
+                        string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                        string FilePath = Path.Combine(UploadFolder, "QRCode.png");
+                        image = (Bitmap)Bitmap.FromFile(FilePath);
+                        var reader = new BarcodeReader();
+                        var msg = reader.Decode(image); // This is where the result of the message goes
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Failed");
+                    }
+                    return View();//Change to redirect to another page
+                }
+                else
+                {
+                    return Json(false);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
        
     }

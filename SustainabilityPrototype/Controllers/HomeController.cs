@@ -82,9 +82,22 @@ namespace SustainabilityPrototype.Controllers
             TempData["ErrorMsg"] = "Please Input Details";
             return RedirectToAction("Login");
         }
+
         public ActionResult Register()
         {
-            return View();
+            Student student = new Student();
+            return View(student);
+        }
+
+
+        // POST: Register
+        [HttpPost]
+        public ActionResult Registered(Student student)
+        {
+            //Add staff record to database
+            studentContext.Registered(student);
+            //Redirect user to Customer/Index view
+            return RedirectToAction("Login");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

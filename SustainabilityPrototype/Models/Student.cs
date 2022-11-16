@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SustainabilityPrototype.Models
 {
     public class Student
     {
-        //Student ID
+        //User name - studentID
         [Display(Name = "StudentId")]
         public int StudentId { get; set; }
         [Display(Name = "Username")]
@@ -37,6 +37,5 @@ namespace SustainabilityPrototype.Models
         //Email
         [Display(Name = "Student email address")]
         public string StudentEmailAddr { get; set; }
-
     }
 }
