@@ -98,7 +98,7 @@ namespace SustainabilityPrototype.Controllers
         }
 
         //VendorController/QRCodeSuccess
-        public ActionResult QRCodeSuccess()
+        public ActionResult CurrentOrders()
         {
             return View();
         }
