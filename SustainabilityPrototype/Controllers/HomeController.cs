@@ -51,6 +51,9 @@ namespace SustainabilityPrototype.Controllers
                     HttpContext.Session.SetString("User", jsonObj);
                     if (s.Username == username)
                     {
+                        int studentPoint = studentContext.getPoints(s.StudentId);
+                        TempData["Points"] = studentPoint;
+                        
                         return RedirectToAction("Index", "Point",new { User = "Student", Student = s});
                     }
                     else

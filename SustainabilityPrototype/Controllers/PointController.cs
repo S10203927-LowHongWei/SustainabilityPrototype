@@ -29,6 +29,7 @@ public class PointController : Controller
             ViewData["Email"] = s.StudentEmailAddr;
             ViewData["DOB"] = Convert.ToDateTime(s.DOB).ToShortDateString();
             ViewData["User"] = user;
+        ViewData["studentPoints"] = TempData["Points"];
         
 
         return View();
