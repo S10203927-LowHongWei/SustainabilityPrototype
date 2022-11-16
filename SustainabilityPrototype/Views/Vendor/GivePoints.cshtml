@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "GivePoints";
+    Layout = "~/Views/Shared/_VendorLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <style>
+        .button:hover {
+            box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, inset 0 0 1.3rem #6E57E0;
+            transition: 0.7s;
+            animation: anim 1.5s infinite alternate;
+            border-style: none;
+        }
+    </style>
+    <div class="QRCodeContainer">
+        <div class="col-md-6">
+            <p style="font-size:3rem; font:bold; text-align:center">Scan QR code to proceed</p>
+            <h3>Live Camera:</h3>
+            <div style="display:flex; justify-content:center;">
+                <div id="LiveCamera"></div>
+            </div>
+            @if (ViewData["Err"] != null)
+            {<p style="color:red">@ViewData["Err"]</p>}
+            <form style="display:flex; justify-content:center;" method="post">
+                <input type="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:80%; height:10%; font-weight:bold; font-size:1.7rem; margin-top:3%" value="Capture Snapshot" onClick="CaptureSnapshot()">
+            </form>
+            <h3>Taken Screenshot:</h3>
+            <div style="display:flex; justify-content:center;">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="results"></div>
+                    </div>
+                </div>
+            </div>
+            <form style="display:flex; justify-content:center;" method="post">
+                <button class="button" style="border-style: solid; border-radius: 50px; background-color: lightgrey; width: 80%; height: 10%; font-weight: bold; font-size: 1.7rem; margin-top: 3%">Confirm Picture</button>
+            </form>
+            @*
+
+            *@
+            <form style="display:flex; justify-content:center;">
+                <button asp-controller="Vendor" asp-action="Index" class="button" style="border-style: solid; border-radius: 50px; background-color: lightgrey; width: 80%; height: 10%; font-weight: bold; font-size: 1.7rem; margin-top: 3%">Back To Home</button>
+            </form>
+        </div>
+    </div>
+    <script src="~/webcamjs/webcam.js"></script>
+    <script language="JavaScript">
+        Webcam.set({
+            width: 340,
+            height: 300,
+            image_format: 'png',
+            jpeg_quality: 100
+        });
+        Webcam.attach('#LiveCamera');
+    </script>
+    <script language="JavaScript">
+        function CaptureSnapshot() {
+            Webcam.snap(function (data) {
+                document.getElementById('results').innerHTML = '<img src="' + data + '"/>';
+                Webcam.upload(data,
+                    '/Vendor/GivePoints',
+                    function (code, text) {
+                    });
+            });
+
+        }
+    </script>
+</body>
+</html>

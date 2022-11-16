@@ -118,5 +118,39 @@ namespace SustainabilityPrototype.DAL
             //A connection should be closed after operations.
             conn.Close();
         }
+        public Student GetStudentByStudentID(string username)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Student WHERE Username = @username";
+            cmd.Parameters.AddWithValue("@username", username);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            Student student = new Student();
+            if (reader.Read())
+            {
+                student.StudentId = reader.GetInt32(0);
+                student.Username = reader.GetString(1);
+                student.StudentName = reader.GetString(2);
+                student.Gender = reader.GetString(3);
+                student.DOB = reader.GetDateTime(4);
+                student.StudentPassword = reader.GetString(5);
+                student.StudentEmailAddr = reader.GetString(6);
+            }
+            reader.Close();
+            conn.Close();
+            return student;
+        }
+        public int UpdatePoints(string username, int points)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"UPDATE StudentPoints SET Point += @points WHERE StudentID = (SELECT StudentID from Student WHERE Username = @username)";
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@points", points);
+
+            conn.Open();
+            int rows = cmd.ExecuteNonQuery();
+            conn.Close();
+            return rows;
+        }
     }
 }

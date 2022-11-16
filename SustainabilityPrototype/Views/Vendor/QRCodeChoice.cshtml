@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "QRCodeChoice";
+    Layout = "~/Views/Shared/_VendorLayout.cshtml";
 }
 
 <style>
@@ -21,11 +22,14 @@
     <div class="points"><h1>You have @ViewData["Points"] 2 million points</h1><h1>CLAIMABLE</h1></div>
 
 </div>
-
-<section style="display:flex; justify-content:center;">
-    <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; font-weight:bold; font-size:30px; margin-top:100px">Redeem Voucher</button>
-</section>
-<section style="display:flex; justify-content:center;">
-    <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; margin-top:40px; font-weight:bold; font-size:30px; margin-bottom:100px;">Give Points</button>
-</section>
+<form>
+    <section style="display:flex; justify-content:center;">
+        <button asp-controller="Vendor" asp-action="RedeemVoucher" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; font-weight:bold; font-size:30px; margin-top:100px">Redeem Voucher</button>
+    </section>
+</form>
+<form>
+    <section style="display:flex; justify-content:center;">
+        <button asp-controller="Vendor" asp-action="GivingVoucher" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:50%; height:100px; margin-top:40px; font-weight:bold; font-size:30px; margin-bottom:100px;">Give Points</button>
+    </section>
+</form>
 

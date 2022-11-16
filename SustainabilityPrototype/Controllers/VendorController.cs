@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SustainabilityPrototype.DAL;
+using SustainabilityPrototype.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,6 +16,8 @@ namespace SustainabilityPrototype.Controllers
     public class VendorController : Controller
     {
         private IHostingEnvironment hostingEnvironment;
+        private StudentDAL studentContext = new StudentDAL();
+        private VendorDAL vendorContext = new VendorDAL();
 
         public VendorController(IHostingEnvironment hostingEnvironment)
         {
@@ -106,6 +110,13 @@ namespace SustainabilityPrototype.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult GivingVoucher(IFormCollection point)
+        {
+            var points = point["total"].ToString();
+            TempData["Points"] = points;
+            return RedirectToAction("GivePoints");
+        }
 
         //VendorController/QRCodeSuccess
         public ActionResult CurrentOrders()
@@ -159,9 +170,76 @@ namespace SustainabilityPrototype.Controllers
                             else if (msg != null)
                             {
                                 TempData["Scan"] = "QR Code Successfully Scanned!";
+
                             }
                         }
                         if(TempData["Scan"].ToString() == "Did not scan properly! Try Again") 
+                        {
+                            ViewData["Err"] = "Did not scan properly! Try Again";
+                            return View();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Failed");
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public ActionResult GivePoints()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GivePoints(string name)
+        {
+            try
+            {
+                var files = HttpContext.Request.Form.Files;
+                if (files != null)
+                {
+                    foreach (var file in files)
+                    {
+                        if (file.Length > 0)
+                        {
+                            var filepath = Path.Combine(hostingEnvironment.WebRootPath, "images", "QRCode.png");
+                            // Save image file in local folder
+                            if (!string.IsNullOrEmpty(filepath))
+                            {
+                                using (FileStream fileStream = System.IO.File.Create(filepath))
+                                {
+                                    file.CopyTo(fileStream);
+                                    fileStream.Flush();
+                                }
+                            }
+
+                        }
+                    }
+                    try
+                    {
+                        string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                        string FilePath = Path.Combine(UploadFolder, "QRCode.png");
+                        using (Bitmap image = (Bitmap)Bitmap.FromFile(FilePath))
+                        {
+                            var reader = new BarcodeReader();
+                            var msg = reader.Decode(image); // This is where the result of the message goes
+                            if (msg == null)
+                            {
+                                TempData["Scan"] = "Did not scan properly! Try Again";
+                            }
+                            else if (msg != null)
+                            {
+                                TempData["Scan"] = "QR Code Successfully Scanned!";
+                                int rows = studentContext.UpdatePoints(msg.ToString(), Convert.ToInt32(TempData["Points"])/2);
+                                return RedirectToAction("Index");
+                            }
+                        }
+                        if (TempData["Scan"].ToString() == "Did not scan properly! Try Again")
                         {
                             ViewData["Err"] = "Did not scan properly! Try Again";
                             return View();
