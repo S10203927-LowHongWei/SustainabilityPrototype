@@ -152,5 +152,23 @@ namespace SustainabilityPrototype.DAL
             conn.Close();
             return rows;
         }
+
+        public int getPoints(int id)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"SELECT * FROM Points WHERE StudentID = @studentID";
+            cmd.Parameters.AddWithValue("@studentID", id);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            Points point = new Points();
+            int targetedPoints = 0;
+            if (reader.Read())
+            {
+                targetedPoints = reader.GetInt32(0);
+            }
+            reader.Close();
+            conn.Close();
+            return targetedPoints;
+        }
     }
 }
