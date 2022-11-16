@@ -161,8 +161,11 @@ namespace SustainabilityPrototype.Controllers
                                 TempData["Scan"] = "QR Code Successfully Scanned!";
                             }
                         }
-
-
+                        if(TempData["Scan"].ToString() == "Did not scan properly! Try Again") 
+                        {
+                            ViewData["Err"] = "Did not scan properly! Try Again";
+                            return View();
+                        }
                     }
                     catch (Exception)
                     {

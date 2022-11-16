@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "RedeemVoucher";
-    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    Layout = "~/Views/Shared/_VendorLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -16,14 +16,30 @@
         }
     </style>
     <div class="QRCodeContainer">
-        <div class="col-md-6" >
-            <p style="font-size:3rem; font:bold; text-align:center">Scab QR code to proceed</p>
+        <div class="col-md-6">
+            <p style="font-size:3rem; font:bold; text-align:center">Scan QR code to proceed</p>
+            <h3>Live Camera:</h3>
             <div style="display:flex; justify-content:center;">
                 <div id="LiveCamera"></div>
             </div>
+                @if (ViewData["Err"]!=null) {<p style="color:red">@ViewData["Err"]</p>}
             <form style="display:flex; justify-content:center;" method="post">
                 <input type="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:80%; height:10%; font-weight:bold; font-size:1.7rem; margin-top:3%" value="Capture Snapshot" onClick="CaptureSnapshot()">
             </form>
+            <h3>Taken Screenshot:</h3>
+            <div style="display:flex; justify-content:center;">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="results"></div>
+                    </div>
+                </div>
+            </div>
+            <form style="display:flex; justify-content:center;" method="post">
+                <button class="button" style="border-style: solid; border-radius: 50px; background-color: lightgrey; width: 80%; height: 10%; font-weight: bold; font-size: 1.7rem; margin-top: 3%">Confirm Picture</button>
+            </form>
+            @*
+
+            *@
             <form style="display:flex; justify-content:center;">
                 <button asp-controller="Vendor" asp-action="Index" class="button" style="border-style: solid; border-radius: 50px; background-color: lightgrey; width: 80%; height: 10%; font-weight: bold; font-size: 1.7rem; margin-top: 3%">Back To Home</button>
             </form>
@@ -42,12 +58,13 @@
     <script language="JavaScript">
         function CaptureSnapshot() {
             Webcam.snap(function (data) {
+                document.getElementById('results').innerHTML = '<img src="' + data + '"/>';
                 Webcam.upload(data,
                     '/Vendor/RedeemVoucher',
                     function (code, text) {
-                        window.location.href = '@Url.Action("Index", "Vendor")';
                     });
             });
+
         }
     </script>
 </body>
