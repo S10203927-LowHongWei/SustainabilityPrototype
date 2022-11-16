@@ -152,11 +152,11 @@ namespace SustainabilityPrototype.DAL
             conn.Close();
             return rows;
         }
-        public void RemovePoints(string username, int points)
+        public void RemovePoints(string sID, int points)
         {
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = @"UPDATE StudentPoints SET Point-= 10 WHERE StudentID = (SELECT StudentID from Student WHERE Username = @username)";
-            cmd.Parameters.AddWithValue("@username", username);
+            cmd.CommandText = @"UPDATE StudentPoints SET Point-= @points WHERE StudentID = @studentID";
+            cmd.Parameters.AddWithValue("@studentID", sID);
             cmd.Parameters.AddWithValue("@points", points);
 
             conn.Open();

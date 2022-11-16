@@ -29,6 +29,7 @@ public class PointController : Controller
             ViewData["Email"] = s.StudentEmailAddr;
             ViewData["DOB"] = Convert.ToDateTime(s.DOB).ToShortDateString();
             ViewData["User"] = user;
+        TempData["StudentID"] = s.StudentId;
         ViewData["studentPoints"] = TempData["Points"];
         
 
@@ -42,7 +43,7 @@ public class PointController : Controller
     public IActionResult Redeem(int points)
     {
         int id = studentContext.CreateVoucher(points);
-
+        studentContext.RemovePoints(TempData["StudentID"].ToString(),points);
         TempData["VoucherID"] = id;
         return RedirectToAction("QRCode");
     }
