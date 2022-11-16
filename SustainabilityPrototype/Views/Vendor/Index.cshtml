@@ -14,15 +14,18 @@
             border-style: none;
         }
     </style>
+
     <div class="main">
         <p style="font-size:3rem; font:bold">Welcome, @ViewData["Name"]</p>
         <div class="pointsContainer">
             <img src="~/images/pointsbanner.jpg" style="width:100%; height:100%" />
             <div class="points"><p style="font-size:2.5rem; font:bold">You have @ViewData["Points"] points</p></div>
         </div>
-        <section style="display:flex; justify-content:center;">
-            <button asp-controller="Vendor" asp-action="RedeemVoucher" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:13%; font-weight:bold; font-size:30px;" onclick="qrCodeScanned()">Scan QR code</button>
-        </section>
+        <form>
+            <section style="display:flex; justify-content:center;">
+                <button asp-controller="Vendor" asp-action="QRCodeChoice" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:13%; font-weight:bold; font-size:30px;">Scan QR code</button>
+            </section>
+        </form>
         <section style="display:flex; justify-content:center;">
             <button id="claim" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:8%; font-weight:bold; font-size:30px;" onclick="claimAllPoints()">Claim All Points</button>
         </section>

@@ -20,8 +20,6 @@ public class PointController : Controller
     }
     public IActionResult Index(string user)
     {
-        if(user == "Student")
-        {
             string UserObj = HttpContext.Session.GetString("User");
             JavaScriptSerializer jss = new JavaScriptSerializer();
             Student s = jss.Deserialize<Student>(UserObj);
@@ -29,15 +27,7 @@ public class PointController : Controller
             ViewData["Email"] = s.StudentEmailAddr;
             ViewData["DOB"] = Convert.ToDateTime(s.DOB).ToShortDateString();
             ViewData["User"] = user;
-        }
-        else if(user == "Vendor")
-        {
-            string UserObj = HttpContext.Session.GetString("User");
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            Vendor v = jss.Deserialize<Vendor>(UserObj);
-            ViewData["Name"] = v.StallName;
-            ViewData["User"] = user;
-        }
+        
 
         return View();
     }
