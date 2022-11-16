@@ -91,7 +91,7 @@ namespace SustainabilityPrototype.DAL
             return student;
         }
 
-        public void Register(Student student)
+        public void Registered(Student student)
         {
             //Create a SqlCommand object from connection object
             SqlCommand cmd = conn.CreateCommand();
@@ -105,7 +105,7 @@ namespace SustainabilityPrototype.DAL
 
             cmd.Parameters.AddWithValue("@username", student.Username);
             cmd.Parameters.AddWithValue("@name", student.StudentName);
-            cmd.Parameters.AddWithValue("@Gender", student.Gender);
+            cmd.Parameters.AddWithValue("@gender", student.Gender);
             cmd.Parameters.AddWithValue("@dob", student.DOB);
             cmd.Parameters.AddWithValue("@password", student.StudentPassword);
             cmd.Parameters.AddWithValue("@email", student.StudentEmailAddr);

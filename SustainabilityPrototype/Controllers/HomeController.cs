@@ -82,11 +82,8 @@ namespace SustainabilityPrototype.Controllers
             TempData["ErrorMsg"] = "Please Input Details";
             return RedirectToAction("Login");
         }
+
         public ActionResult Register()
-        {
-            return View();
-        }
-        public ActionResult Registered()
         {
             Student student = new Student();
             return View(student);
@@ -98,7 +95,7 @@ namespace SustainabilityPrototype.Controllers
         public ActionResult Registered(Student student)
         {
             //Add staff record to database
-            studentContext.Register(student);
+            studentContext.Registered(student);
             //Redirect user to Customer/Index view
             return RedirectToAction("Login");
         }
