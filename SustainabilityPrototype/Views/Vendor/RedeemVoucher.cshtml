@@ -21,21 +21,14 @@
             <div style="display:flex; justify-content:center;">
                 <div id="LiveCamera"></div>
             </div>
-            <form style="display:flex; justify-content:center;">
-                <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:80%; height:10%; font-weight:bold; font-size:1.7rem; margin-top:3%" value="Capture Snapshot" onClick="CaptureSnapshot()">Capture Snapshot</button>
+            <form style="display:flex; justify-content:center;" method="post">
+                <input type="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:80%; height:10%; font-weight:bold; font-size:1.7rem; margin-top:3%" value="Capture Snapshot" onClick="CaptureSnapshot()">
             </form>
             <form style="display:flex; justify-content:center;">
                 <button asp-controller="Vendor" asp-action="Index" class="button" style="border-style: solid; border-radius: 50px; background-color: lightgrey; width: 80%; height: 10%; font-weight: bold; font-size: 1.7rem; margin-top: 3%">Back To Home</button>
             </form>
         </div>
     </div>
-    @*<div class="col-md-6">
-            <p style="font-size:3rem; font:bold">Scab QR code to proceed</p>
-            <div id="LiveCamera"></div>
-            <form>
-                <input type="button" class="btn btn-primary" value="Capture Snapshot" onClick="CaptureSnapshot()">
-            </form>
-        </div>*@
     <script src="~/webcamjs/webcam.js"></script>
     <script language="JavaScript">
         Webcam.set({
@@ -52,7 +45,7 @@
                 Webcam.upload(data,
                     '/Vendor/RedeemVoucher',
                     function (code, text) {
-                        alert('Snapshot/Image captured successfully...');
+                        window.location.href = '@Url.Action("Index", "Vendor")';
                     });
             });
         }
