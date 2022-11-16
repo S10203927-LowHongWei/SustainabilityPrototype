@@ -5,13 +5,37 @@
     Layout = "_StudentLayout";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
 
-<img src ="~/images/nasi lemak.jpeg" style="width:100%;" />
-<h1 class="text-center">NasiLemak</h1>
+</head>
+<body>
+    <section>
+        <img src="~/images/nasi lemak.jpeg" style="width:100%;" />
+        <h1 class="text-center" style="padding-top:30px;">NasiLemak</h1>
+    </section>
+    <section>
+        <div style="padding-top:30px;">
+            <form asp-action="CreateOrderItem">
+                <h5>Quantity of rice:</h5>
+                <div class="d-flex justify-content-center">
+                    <label class="col-form-label" style="width:40%">
+                        <input asp-for="SpecialRequest" type="radio" value="100 grams" name="specialrequest" checked class="form-check-input" />
+                        <span style="font-weight:normal; ">100 grams</span>
+                    </label>
+                    <label class="col-form-label" style="width:40%">
+                        <input asp-for="SpecialRequest" type="radio" value="200grams" name="specialrequest" class="form-check-input" />
+                        <span style="font-weight:normal;">200 grams</span>
+                    </label>
+                </div>
+                <div class="action" style="padding-top:30px;">
+                    <button class="btn btn-primary justify-content-center">Add to basket</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
 
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

@@ -6,16 +6,18 @@
     <title>@ViewData["Title"] - SustainabilityPrototype</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        .button:hover {
+            box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, inset 0 0 1.3rem #6E57E0;
+            transition: 0.7s;
+            animation: anim 1.5s infinite alternate;
+            border-style: none;
+        }
+    </style>
 </head>
 
-<style>
-    .button:hover {
-        box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, 0 0 0.2rem #6E57E0, inset 0 0 1.3rem #6E57E0;
-        transition: 0.7s;
-        animation: anim 1.5s infinite alternate;
-        border-style: none;
-    }
-</style>
+
 
 <body>
     <header>
@@ -33,14 +35,6 @@
                     <a class="nav-item nav-link active" href="~/Home/Index">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link active" href="~/Home/Login">Login</a>
                     <a class="nav-item nav-link active" href="#">Contact Us</a>
-                    <a class="nav-item nav-link active" href="~/Order/Index">Order Home Page</a>@*Temporary for referring to order page*@
-                    <a class="nav-item nav-link active" href="~/Order/SelectedStall">Selected Stall</a>@*Temporary for referring to order page*@
-                    <a class="nav-item nav-link active" href="~/Order/OrderSummary">Order Summary</a>@*Temporary for referring to order page*@
-                    <a class="nav-item nav-link active" href="~/Vendor/Index">Vendor Index</a>@*Temporary for referring to order page*@
-                    <a class="nav-item nav-link active" href="~/Vendor/QRCodeChoice">QR Code Choice</a>@*Temporary for referring to order page*@
-                    <a class="nav-item nav-link active" href="~/Vendor/GivingVoucher">Giving Voucher</a>@*Temporary for referring to order page*@
-                    <a class="nav-item nav-link active" href="~/Vendor/CurrentOrders">Current Orders</a>@*Temporary for referring to order page*@
-
                 </div>
             </div>
         </nav>
