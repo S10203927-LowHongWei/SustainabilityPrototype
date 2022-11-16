@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "CurrentOrders";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div style="width:100%; height:auto; background-color:dodgerblue; font-size:5rem; font-weight:bold; border-radius: 25px;">FoodClub</div>
+    <img src="~/images/Ngee_Ann_Polytechnic_logo.svg.png" style="width:100%" />
+
+    <div style="display:flex; justify-content:space-around; background-color:lightblue; padding:20px 0; border-style:solid; border-width:2px; border-color:black;">
+        <h2 style="font-weight:bold; font-size:2rem;">Item</h2>
+        <h2 style="font-weight:bold; font-size:2rem; margin-right:5%">Quantity</h2>
+    </div>
+
+
+   
+
+
+    <div style="border:solid black 2px;">
+        <div style="display:flex; justify-content:space-around;">
+            <div style="display:flex; flex-flow:wrap column;">
+                <div style="font-size:2rem;">Nasi Lemak</div>
+                <div style="font-size:2rem;">Chicken rice</div>
+                <div style="font-size:2rem;">Salad</div>
+                <div style="font-size:2rem;">Chicken chop</div>
+                <div style="font-size:2rem;">Item</div>
+
+
+
+            </div>
+
+
+            <div style="display: flex; flex-flow:wrap column;">
+                <div style="width:150px;">
+
+                    <div style="font-size:2rem;">1</div>
+                    <div style="font-size:2rem;">2</div>
+                    <div style="font-size:2rem;">3</div>
+                    <div style="font-size:2rem;">4</div>
+                    <div style="font-size:2rem;">5</div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <section style="display:flex; justify-content:center;">
+        <button class="button" style="border-style: solid; border-radius: 50px; background-color: limegreen; width: 100%; height: auto; margin-top: 100px; font-weight: bold; font-size: 30px;">Confirm</button>
+    </section>
+    
+
+
+    <section style="display:flex; justify-content:center;">
+        <button class="button" style="border-style: solid; border-radius: 50px; background-color: lightgrey; width: 100%; height: auto; margin-top: 40px; font-weight: bold; font-size: 30px;" onclick="location.href='@Url.Action("Index", "Vendor")'">Back to Home</button>
+    </section>
+</body>
+
+
+</html>
+
+

@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_VendorLayout.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -21,10 +20,10 @@
             <div class="points"><p style="font-size:2.5rem; font:bold">You have @ViewData["Points"] points</p></div>
         </div>
         <section style="display:flex; justify-content:center;">
-            <button asp-controller="Vendor" asp-action="RedeemVoucher" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:13%; font-weight:bold; font-size:30px;" onclick="qrCodeScanned()">Scan QR code</button>
+            <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:13%; font-weight:bold; font-size:30px;">Scan QR code</button>
         </section>
         <section style="display:flex; justify-content:center;">
-            <button id="claim" class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:8%; font-weight:bold; font-size:30px;" onclick="claimAllPoints()">Claim All Points</button>
+            <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:8%; font-weight:bold; font-size:30px;" data-toggle="modal" data-target="#modalPointsToggle">Claim All Points</button>
         </section>
         <section style="display:flex; justify-content:center;">
             <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:100%; height:auto; margin-top:8%; margin-bottom:10%; font-weight:bold; font-size:30px;" onclick="location.href='@Url.Action("CurrentOrders", "Vendor")'">Current Orders</button>
@@ -40,7 +39,7 @@
     <!--<div class="modal fade" id="modalToggle" tabindex="-1" role="dialog" aria-labelledby="modalToggleCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
-        <div class="modal-content">
+
                 <div class="modal-body text-center" style="font-weight:bold; font-size:1.5rem; color:green;">
                     <p>@ViewData["Msg"]</p>
                     <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:45%; height:3rem; margin:20px; font-weight:bold; font-size:20px;" data-dismiss="modal">Okay</button>
@@ -49,25 +48,18 @@
         </div>
     </div>-->
     <!--Modal claim points-->
-    @*<div class="modal fade" id="modalPointsToggle" tabindex="-1" role="dialog" aria-labelledby="modalToggleCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-content">
-                        <div class="modal-body text-center" style="font-weight:bold; font-size:2rem; color:limegreen;">
-                            200 points converted to $20
-                        </div>
-                        <div class="modal-footer" style="display:flex; justify-content:center;">
-                            <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:30%; height:4rem; margin:30px 0; font-weight:bold; font-size:20px;" data-dismiss="modal">Okay</button>
-                        </div>
-                    </div>
+    <div class="modal fade" id="modalPointsToggle" tabindex="-1" role="dialog" aria-labelledby="modalToggleCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center" style="font-weight:bold; font-size:2rem; color:limegreen;">
+                    200 points converted to $20
+                </div>
+                <div class="modal-footer" style="display:flex; justify-content:center;">
+                    <button class="button" style="border-style:solid; border-radius:50px; background-color: lightgrey; width:30%; height:4rem; margin:30px 0; font-weight:bold; font-size:20px;" data-dismiss="modal">Okay</button>
                 </div>
             </div>
-        </div>*@
-
+        </div>
+    </div>
 </body>
-
-
 </html>
-<script src="~/js/vendorIndex.js"></script>
-
-

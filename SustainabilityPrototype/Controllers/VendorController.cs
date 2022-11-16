@@ -108,7 +108,7 @@ namespace SustainabilityPrototype.Controllers
         }
 
         //VendorController/QRCodeSuccess
-        public ActionResult QRCodeSuccess()
+        public ActionResult CurrentOrders()
         {
             return View();
         }
@@ -120,7 +120,7 @@ namespace SustainabilityPrototype.Controllers
 
         //POST: VendorController/RedeemVoucher
         [HttpPost]
-        public IActionResult RedeemVoucher(string name)
+        public ActionResult RedeemVoucher(string name)
         {
             try
             {
@@ -131,11 +131,7 @@ namespace SustainabilityPrototype.Controllers
                     {
                         if (file.Length > 0)
                         {
-                            var fileName = file.FileName;
-                            var fileNameToStore = string.Concat(Convert.ToString(Guid.NewGuid()), Path.GetExtension(fileName));
-                            //  Path to store the snapshot in local folder
                             var filepath = Path.Combine(hostingEnvironment.WebRootPath, "images", "QRCode.png");
-
                             // Save image file in local folder
                             if (!string.IsNullOrEmpty(filepath))
                             {
@@ -148,25 +144,35 @@ namespace SustainabilityPrototype.Controllers
 
                         }
                     }
-                    Bitmap image;
                     try
                     {
                         string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
                         string FilePath = Path.Combine(UploadFolder, "QRCode.png");
-                        image = (Bitmap)Bitmap.FromFile(FilePath);
-                        var reader = new BarcodeReader();
-                        var msg = reader.Decode(image); // This is where the result of the message goes
+                        using (Bitmap image = (Bitmap)Bitmap.FromFile(FilePath))
+                        {
+                            var reader = new BarcodeReader();
+                            var msg = reader.Decode(image); // This is where the result of the message goes
+                            if (msg == null)
+                            {
+                                TempData["Scan"] = "Did not scan properly! Try Again";
+                            }
+                            else if (msg != null)
+                            {
+                                TempData["Scan"] = "QR Code Successfully Scanned!";
+                            }
+                        }
+                        if(TempData["Scan"].ToString() == "Did not scan properly! Try Again") 
+                        {
+                            ViewData["Err"] = "Did not scan properly! Try Again";
+                            return View();
+                        }
                     }
                     catch (Exception)
                     {
                         Console.WriteLine("Failed");
                     }
-                    return View();//Change to redirect to another page
                 }
-                else
-                {
-                    return Json(false);
-                }
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {

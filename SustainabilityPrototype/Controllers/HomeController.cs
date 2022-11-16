@@ -66,7 +66,7 @@ namespace SustainabilityPrototype.Controllers
                     HttpContext.Session.SetString("User", jsonObj);
                     if (v.Username == username)
                     {
-                        return RedirectToAction("Index", "Point", new { User = "Vendor", Vendor = v }) ;
+                        return RedirectToAction("Index", "Vendor", new { User = "Vendor", Vendor = v }) ;
                     }
                     else
                     {

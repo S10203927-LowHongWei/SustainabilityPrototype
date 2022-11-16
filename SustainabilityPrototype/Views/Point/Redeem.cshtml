@@ -6,41 +6,103 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <style>
-        body {
-            background: #fffacd;
-        }
-    </style>
-
+  <link rel="stylesheet" href="~/css/redemption.css">
+  <script defer src="~/js/redemption.js"></script>
 </head>
-
+  
 <body>
-    <div class="showcash">
-        <img src="~/images/Pig.png">
-        <div class="cash">
-            <h1>$</h1>
+  <div class="container">
+    <img src="~/images/Pig.png" style="width:100%;"> 
+    <div class="centered">$</div>
+  </div>
+  <div class="showpoints">
+  <div class="points">Points:</div>
+  </div>
+  <section class="button-container">
+    <div class="flex-item">
+      <div class="10c">
+        <p>10c off next order</p>
+        <button type="submit" class="submit">Redeem</button>
+        <div class="modal myModal">
+            <div class="modal-content">
+              <div class="container">    
+              <div class="confirmchoice">
+                <form>
+                  <h3>Redeem this voucher</h3>
+                  <input type="button" class="yes" value="Yes">
+                  <input type="button" class="no" value="No">
+                </form>
+              </div>
+            </div>
+            </div>
         </div>
+      </div>
     </div>
-    <div class="points">Points:</div>
-    <div class="button-container">
-        <div class="10c">
-            <p>10c off next order</p>
-            <button type="submit" class="submit">Redeem</button>
+    <div class="flex-item">
+      <div class="20c">
+        <p>20c off next order</p>
+        <button type="submit" class="submit">Redeem</button>
+        <div class="modal myModal">
+            <div class="modal-content">
+              <div class="container">    
+              <div class="confirmchoice">
+                <form>
+                  <h3>Redeem this voucher</h3>
+                  <input type="button" class="yes" value="Yes">
+                  <input type="button" class="no" value="No">
+                </form>
+              </div>
+            </div>
+            </div>
         </div>
-        <div class="20c">
-            <p>20c off next order</p>
-            <button type="submit" class="submit">Redeem</button>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="50c">
+        <p>50c off next order</p>
+        <button type="submit" class="submit">Redeem</button>
+        <div class="modal myModal">
+            <div class="modal-content">
+              <div class="container">    
+              <div class="confirmchoice">
+                <form>
+                  <h3>Redeem this voucher</h3>
+                  <input type="button" class="yes" value="Yes">
+                  <input type="button" class="no" value="No">
+                </form>
+              </div>
+            </div>
+            </div>
         </div>
-        <div class="50c">
-            <p>50c off next order</p>
-            <button type="submit" class="submit">Redeem</button>
+      </div>
+    </div>
+    <div class="flex-item">
+      <div class="1d">
+        <p>$1 off next order</p>
+        <button type="submit" class="submit">Redeem</button>
+        <div class="modal myModal">
+            <div class="modal-content">
+              <div class="container">    
+              <div class="confirmchoice">
+                <form>
+                  <h3>Redeem this voucher</h3>
+                  <input type="button" class="yes" value="Yes">
+                  <input type="button" class="no" value="No">
+                </form>
+              </div>
+            </div>
+            </div>
         </div>
-        <div class="1d">
-            <p>$1 off next order</p>
-            <button type="submit" class="submit">Redeem</button>
-        </div>
+      </div>
+    </div>
+  </section>
+    
 
-</body>
+  
+</body> 
 </html>
+
+
 
