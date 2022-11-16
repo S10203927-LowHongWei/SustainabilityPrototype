@@ -156,7 +156,7 @@ namespace SustainabilityPrototype.DAL
         public int getPoints(int id)
         {
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = @"SELECT * FROM Points WHERE StudentID = @studentID";
+            cmd.CommandText = @"SELECT * FROM StudentPoints WHERE StudentID = @studentID";
             cmd.Parameters.AddWithValue("@studentID", id);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
