@@ -10,6 +10,8 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+
+
 <body>
     <div style="width:100%; height:auto; background-color:dodgerblue; font-size:100px; font-weight:bold; border-radius: 25px;">FoodClub</div>
     <img src="~/images/Ngee_Ann_Polytechnic_logo.svg.png" style="width:100%" />
@@ -20,46 +22,54 @@
     </div>
 
 
+
+
     <div style="border:solid black 2px;">
-        <div style="background-color:lightgrey; padding:20px 0px; display:flex; justify-content:space-around;">
-            <h2 style="">Reusable Cups</h2>
-            <div style="width:150px; ">
-                <div class="input-group" style="margin-top:2rem;">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[1]">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                    </span>
-                    <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="1000">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[1]">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </span>
+        <div style="display:flex; justify-content:space-around;">
+            <div style="display:flex; flex-flow:wrap column;">
+                <h2 >Reusable Cups</h2>
+                <h2 >Reusable Container</h2>
+            </div>
+
+
+            <div style="display: flex; flex-flow:wrap column;">
+                <div style="width:150px; margin-right:4rem">
+
+                    <div class="input-group" style="padding:2rem 0;">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[1]">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+                        <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[1]">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                        </span>
+                        <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="10">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </span>
+                    </div>
                 </div>
-                <p></p>
             </div>
         </div>
 
-        <div style="background-color: lightgrey; padding: 20px 0; display: flex; justify-content: space-around;">
-            <h2 style="">Reusable Container</h2>
-            <div style="width:150px;">
-                <div class="input-group" style="margin-top:2rem;">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
-                            <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                    </span>
-                    <input type="text" name="quant[2]" class="form-control input-number" value="1" min="1" max="1000">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </span>
-                </div>
-                <p></p>
-            </div>
-        </div>
+
+
+
+
 
         <div style="display:flex; justify-content:space-around; background-color:lightgrey; padding:20px 0; border-top:0.3rem solid black;">
             <h2 style="font-weight:bold;">Total points awarded</h2>
@@ -78,12 +88,14 @@
 
 </body>
 
-<script src="~/js/counter.js"></script>
+
+
 
 </html>
 
 
 
+<script src="~/js/counter.js"></script>
 
 
 
