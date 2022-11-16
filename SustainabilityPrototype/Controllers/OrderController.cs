@@ -11,9 +11,24 @@ namespace SustainabilityPrototype.Controllers
 {
     public class OrderController : Controller
     {
-        //Order cart to store all the selected items
-        private List<string> amtRice = new List<string> {"100 grams", "200 grams"};
+        //List to store all the order details temporarily
+        List<Orderdetails> personalOrder = new List<Orderdetails>();
+        //Order qty
+        private List<SelectListItem> FoodQty = new List<SelectListItem>();
 
+        public OrderController()
+        {
+            //Populate the selection list for drop-down list
+            for (int i = 1; i <= 10; i++)
+            {
+                FoodQty.Add(
+                new SelectListItem
+                {
+                    Value = i.ToString(),
+                    Text = i.ToString(),
+                });
+            }
+        }
 
         // GET: OrderController
         public ActionResult Index()
@@ -26,6 +41,7 @@ namespace SustainabilityPrototype.Controllers
             return View();
         }
 
+        //Inonesian food stall controller actions
         public ActionResult Indonesian()
         {
             return View();
@@ -33,14 +49,29 @@ namespace SustainabilityPrototype.Controllers
 
         public ActionResult NasiLemak()
         {
-            ViewData["amtRice"] = amtRice;
+            Orderdetails newOrderdetail = new Orderdetails();
+            newOrderdetail.OrderQty = 1;
+            newOrderdetail.FoodId = 5;
+            return View(newOrderdetail);
+        }
 
-            Orderdetails orderdetails = new Orderdetails
-            {
-
-            };
+        public ActionResult AddToBasketConfirmation()
+        {
             return View();
         }
+
+        public ActionResult OrderComplete()
+        {
+            return View();
+        }
+
+        public ActionResult CreateOrderItem(Orderdetails newOrderdetail)
+        {
+            personalOrder.Append(newOrderdetail);
+            return RedirectToAction("AddToBasketConfirmation");
+        }
+
+
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {

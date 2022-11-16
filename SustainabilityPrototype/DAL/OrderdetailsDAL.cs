@@ -33,13 +33,14 @@ namespace SustainabilityPrototype.DAL
             SqlCommand cmd = conn.CreateCommand();
             //Specify an INSERT SQL statement which will
             //return the auto-generated StaffID after insertion
-            cmd.CommandText = @"INSERT INTO Customer (OrderDetailID, OrderID, FoodID, OrderQty)
-                                VALUES(@orderdetailid,@orderid, @foodid, @orderqty)";
+            cmd.CommandText = @"INSERT INTO Customer (OrderDetailID, OrderID, FoodID, SpecialRequest, OrderQty)
+                                VALUES(@orderdetailid,@orderid, @foodid, @specailrequest, @orderqty)";
             //Define the parameters used in SQL statement, value for each parameter
             //is retrieved from respective class's property.
             cmd.Parameters.AddWithValue("@orderdetailid", orderdetails.OrderId);
             cmd.Parameters.AddWithValue("@orderid", orderdetails.OrderId);
             cmd.Parameters.AddWithValue("@foodid", orderdetails.FoodId);
+            cmd.Parameters.AddWithValue("@specialrequest", orderdetails.SpecialRequest);
             cmd.Parameters.AddWithValue("@orderqty", orderdetails.OrderQty);
             //A connection to database must be opened before any operations made.
             conn.Open();

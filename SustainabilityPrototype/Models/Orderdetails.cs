@@ -20,6 +20,10 @@ namespace SustainabilityPrototype.Models
         [Display(Name = "Food id")]
         public int FoodId { get; set; }
 
+        //Special Request
+        [Display(Name = "Special request")]
+        public string SpecialRequest { get; set; }
+
         //OrderQty
         [Display(Name = "Order Quantity")]
         public int OrderQty { get; set; }
