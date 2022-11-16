@@ -20,42 +20,31 @@
                     <input asp-for="Username" type="text" placeholder="StudentId" autocomplete="nope" name="username">
                 </div>
                 <div class="input-field">
-                    <input asp-for="StudentName" type="text" placeholder="Name" autocomplete="nope" name="name">
+                    <input asp-for="StudentName" type="text" placeholder="Name" autocomplete="nope" name="studentname">
                 </div>
                 <div class="input-field">
                     <label class="col">
-                        <input asp-for="Gender" type="radio" value="M" checked class="form-check-input" style="width:50%;" />
+                        <input asp-for="Gender" type="radio" value="M" name="gender"checked class="form-check-input" style="width:50%;" />
                         <span style="font-weight:normal; ">Male</span>
                     </label>
                     <label class="col">
-                        <input asp-for="Gender" type="radio" value="F" class="form-check-input" style="width:50%;" />
+                        <input asp-for="Gender" type="radio" value="F" name="gender" class="form-check-input" style="width:50%;" />
                         <span style="font-weight:normal;">Female</span>
                     </label>
                 </div>
-                <!--
                 <div class="input-field">
-                    <label class="col-form-label">
-                        <input asp-for="Gender" type="radio" value="M" checked class="form-check-input" />
-                        <span style="font-weight:normal;padding-right:20px">Male</span>
-                    </label>
-                    <label class="col-form-label">
-                        <input asp-for="Gender" type="radio" value="F" class="form-check-input" />
-                        <span style="font-weight:normal;padding-right:20px">Female</span>
-                    </label>
-                </div>
-                    -->
-                <div class="input-field">
-                    <input asp-for="DOB" type="datetime-local" placeholder="Date of birth" autocomplete="nope" name="dob">
+                    <input asp-for="DOB" type="date" placeholder="Date of birth" autocomplete="nope" name="dob">
                 </div>
                 <div class="input-field">
-                    <input asp-for="StudentPassword" type="password" name="password" placeholder="Password" autocomplete="new-password">
+                    <input asp-for="StudentPassword" type="password" name="studentpassword" placeholder="Password" autocomplete="new-password">
+                </div>
+                <div class="input-field">
+                    <input asp-for="StudentEmailAddr" type="text" name="studentemailaddr" placeholder="Email Address" autocomplete="nope">
                 </div>
             </div>
             <div class="action">
-                <input type="submit" value="Register" class="btn btn-dark" />
-                <!--
-    <button>Create</button>
-        -->
+                <button>Register</button>
+
             </div>
         </form>
     </div>
