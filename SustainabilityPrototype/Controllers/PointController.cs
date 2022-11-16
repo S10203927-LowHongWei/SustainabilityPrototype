@@ -13,7 +13,7 @@ public class PointController : Controller
 {
     private Student state()
     {
-        string studentObj = HttpContext.Session.GetString("Student");
+        string studentObj = HttpContext.Session.GetString("User");
         JavaScriptSerializer jss = new JavaScriptSerializer();
         Student s = jss.Deserialize<Student>(studentObj);
         return s;
