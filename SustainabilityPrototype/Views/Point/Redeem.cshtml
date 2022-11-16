@@ -29,9 +29,9 @@
             <div class="modal-content">
               <div class="container">    
               <div class="confirmchoice">
-                <form>
+                <form method="post">
                   <h3>Redeem this voucher</h3>
-                  <input type="button" class="yes" value="Yes">
+                  <button asp-controller="Point" asp-action="Redeem" asp-route-points="75" class="yes">Yes</button>
                   <input type="button" class="no" value="No">
                 </form>
               </div>
@@ -48,9 +48,9 @@
             <div class="modal-content">
               <div class="container">    
               <div class="confirmchoice">
-                <form>
+                <form method="post">
                   <h3>Redeem this voucher</h3>
-                  <input type="button" class="yes" value="Yes">
+                  <button asp-controller="Point" asp-action="Redeem" asp-route-points="150" class="yes">Yes</button>
                   <input type="button" class="no" value="No">
                 </form>
               </div>
@@ -69,7 +69,7 @@
               <div class="confirmchoice">
                 <form>
                   <h3>Redeem this voucher</h3>
-                  <input type="button" class="yes" value="Yes">
+                  <button asp-controller="Point" asp-action="Redeem" asp-route-points="375" class="yes">Yes</button>
                   <input type="button" class="no" value="No">
                 </form>
               </div>
@@ -86,9 +86,9 @@
             <div class="modal-content">
               <div class="container">    
               <div class="confirmchoice">
-                <form>
+                <form method="post">
                   <h3>Redeem this voucher</h3>
-                  <input type="button" class="yes" value="Yes">
+                  <button asp-controller="Point" asp-action="Redeem" asp-route-points="750" class="yes">Yes</button>
                   <input type="button" class="no" value="No">
                 </form>
               </div>
