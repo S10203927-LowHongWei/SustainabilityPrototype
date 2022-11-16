@@ -55,5 +55,15 @@ namespace SustainabilityPrototype.DAL
             conn.Close();
             return v;
         }
+        public void RedeemVoucher(int voucherId, int vendorId)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"UPDATE VendorPoints SET Point += (SELECT Points from Voucher WHERE VoucherID = @voucherID) WHERE VendorID = @vendorID;";
+            cmd.Parameters.AddWithValue("@voucherID", voucherId);
+            cmd.Parameters.AddWithValue("@vendorID", vendorId);
+            conn.Open();
+            int id = Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+        }
     }
 }

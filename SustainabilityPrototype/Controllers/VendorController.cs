@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Nancy.Json;
 using SustainabilityPrototype.DAL;
 using SustainabilityPrototype.Models;
 using System;
@@ -26,6 +27,10 @@ namespace SustainabilityPrototype.Controllers
         // GET: VendorController
         public ActionResult Index()
         {
+            string UserObj = HttpContext.Session.GetString("User");
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            Vendor v = jss.Deserialize<Vendor>(UserObj);
+            TempData["VendorID"] = v.VendorID;
             return View();
         }
 
@@ -170,6 +175,7 @@ namespace SustainabilityPrototype.Controllers
                             else if (msg != null)
                             {
                                 TempData["Scan"] = "QR Code Successfully Scanned!";
+                                vendorContext.RedeemVoucher(Convert.ToInt32(msg.ToString()), Convert.ToInt32(TempData["VendorID"].ToString()));
 
                             }
                         }

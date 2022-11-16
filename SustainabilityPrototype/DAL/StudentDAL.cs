@@ -152,5 +152,28 @@ namespace SustainabilityPrototype.DAL
             conn.Close();
             return rows;
         }
+        public void RemovePoints(string username, int points)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"UPDATE StudentPoints SET Point-= 10 WHERE StudentID = (SELECT StudentID from Student WHERE Username = @username)";
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@points", points);
+
+            conn.Open();
+            int rows = cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public int CreateVoucher(int points)
+        {
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = @"INSERT INTO Voucher VALUES (@points); SELECT SCOPE_IDENTITY()";
+            cmd.Parameters.AddWithValue("@points", points);
+
+            conn.Open();
+            int id =Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+            return id;
+        }
+            
     }
 }

@@ -8,6 +8,7 @@ using QRCoder;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
+using SustainabilityPrototype.DAL;
 
 public class PointController : Controller
 {
@@ -18,6 +19,7 @@ public class PointController : Controller
         Student s = jss.Deserialize<Student>(studentObj);
         return s;
     }
+    private StudentDAL studentContext = new StudentDAL();
     public IActionResult Index(string user)
     {
             string UserObj = HttpContext.Session.GetString("User");
@@ -35,14 +37,21 @@ public class PointController : Controller
     {
         return View();
     }
+    [HttpPost]
+    public IActionResult Redeem(int points)
+    {
+        int id = studentContext.CreateVoucher(points);
+
+        TempData["VoucherID"] = id;
+        return RedirectToAction("QRCode");
+    }
     public IActionResult QRCode()
     {
-        bool f = false;
         Student s = state();
-        if (f == true)
+        if (TempData["VoucherID"] != null)
         {
             QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode("VoucherID", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode(TempData["VoucherID"].ToString(), QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             MemoryStream ms = new MemoryStream();
             using (Bitmap bitmap = qrCode.GetGraphic(10))
@@ -51,8 +60,9 @@ public class PointController : Controller
                 ViewData["QR"] = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
             }
             ViewData["RedeemOption"] = "Scan Voucher";
+            TempData["VoucherID"] = null;
         }
-        else if (f == false)
+        else
         {
             QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrCodeGenerator.CreateQrCode(s.Username.ToString(), QRCodeGenerator.ECCLevel.Q);
