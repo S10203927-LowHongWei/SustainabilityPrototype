@@ -19,7 +19,7 @@
         <p style="font-size:3rem; font:bold">Welcome, @ViewData["Name"]</p>
         <div class="pointsContainer">
             <img src="~/images/pointsbanner.jpg" style="width:100%; height:100%" />
-            <div class="points"><p style="font-size:2.5rem; font:bold">You have @ViewData["Points"] points</p></div>
+            <div class="points"><p style="font-size:2.5rem; font:bold">You have @ViewData["Points"].ToString() points</p></div>
         </div>
         <form>
             <section style="display:flex; justify-content:center;">

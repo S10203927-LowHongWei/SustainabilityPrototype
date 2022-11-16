@@ -10,6 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ZXing;
+using Nancy.Json;
+
 
 namespace SustainabilityPrototype.Controllers
 {
@@ -26,6 +28,10 @@ namespace SustainabilityPrototype.Controllers
         // GET: VendorController
         public ActionResult Index()
         {
+
+
+            ViewData["Name"] = TempData["Name"];
+            ViewData["Points"] = TempData["Points"];
             return View();
         }
 

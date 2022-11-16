@@ -9,6 +9,7 @@ namespace SustainabilityPrototype.Models
     {
         public int StudentID { get; set; }
         public int StudentPoints { get; set; }
+
     }
    
 }

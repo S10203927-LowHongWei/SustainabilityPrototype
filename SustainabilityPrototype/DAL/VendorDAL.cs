@@ -55,5 +55,31 @@ namespace SustainabilityPrototype.DAL
             conn.Close();
             return v;
         }
+
+        public int getVendorPoints(int id)
+        {
+
+            //Create a SqlCommand object from connection object
+            SqlCommand cmd = conn.CreateCommand();
+            //Specify the SELECT SQL statement 
+            cmd.CommandText = @"SELECT * FROM VendorPoints WHERE VendorID = @vendorID";
+            cmd.Parameters.AddWithValue("@vendorID", id);
+            //Open a database connection
+            conn.Open();
+            //Execute the SELECT SQL through a DataReader
+            SqlDataReader reader = cmd.ExecuteReader();
+            //Read all records until the end, save data into a staff list
+            int result = 0;
+            if (reader.Read())
+            {
+                result = reader.GetInt32(0);
+               
+            }
+            reader.Close();
+            conn.Close();
+            return result;
+
+
+        }
     }
 }

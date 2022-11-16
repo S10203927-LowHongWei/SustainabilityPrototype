@@ -69,6 +69,10 @@ namespace SustainabilityPrototype.Controllers
                     HttpContext.Session.SetString("User", jsonObj);
                     if (v.Username == username)
                     {
+                        int vendorPoints = vendorContext.getVendorPoints(v.VendorID);
+                        TempData["Points"] = vendorPoints;
+                        TempData["Name"] = v.StallName;
+                        
                         return RedirectToAction("Index", "Vendor", new { User = "Vendor", Vendor = v }) ;
                     }
                     else
